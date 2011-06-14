@@ -1,0 +1,6 @@
+TactonPlayer	KEYWORD1
+beep	KEYWORD2
+debug1	KEYWORD2
+debug2	KEYWORD2
+debug3	KEYWORD2
+debug4	KEYWORD2
