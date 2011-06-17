@@ -95,3 +95,8 @@ void TactonPlayer::schedule(unsigned char index, unsigned long timestamp)
 	buffer[5] = (unsigned char)(timestamp & 0x000000ff);
 	_comport->WriteData(buffer, 6);
 }
+
+void TactonPlayer::debugRead(char *res, int nb) const
+{
+	_comport->ReadData(res, nb);
+}

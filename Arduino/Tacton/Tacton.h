@@ -8,14 +8,11 @@
 class Tacton 
 {
 	public:
-//		Tacton();
 		Tacton(unsigned int nbframes, byte *desc);
-//		Tacton(const Tacton &tacton);
 		~Tacton();
 		
 		void play(const TactonPlayer &player) const;
 		
-//		Tacton & operator=(const Tacton &t);
 		boolean isValid() const { return _patterns && _durations && _frequencies && _amplitudes; }
 
 	private:

@@ -14,16 +14,19 @@ class TactonPlayer
 			void __declspec(dllexport) stop();
 
 			//register a tacton
-			void __declspec(dllexport) regist(const Tacton &t);
+			__declspec(dllexport) void regist(const Tacton &t);
 			//register a list of tactons in a file, returns the number of tactons loaded
-			unsigned int __declspec(dllexport) registFile(char *filename);
+			__declspec(dllexport) unsigned int registFile(char *filename);
 
 			//play a registered tacton
-			void __declspec(dllexport) play(unsigned char index);
+			__declspec(dllexport) void play(unsigned char index);
 			//play a specified tacton
-			void __declspec(dllexport) play(const Tacton &t);
+			__declspec(dllexport) void play(const Tacton &t);
 			//schedule the play of a registered tacton
-			void __declspec(dllexport) schedule(unsigned char index, unsigned long timestamp);
+			__declspec(dllexport) void schedule(unsigned char index, unsigned long timestamp);
+
+			//read on the serial port
+			__declspec(dllexport) void debugRead(char *res, int nb) const;
 
 private:
 		Serial *_comport;

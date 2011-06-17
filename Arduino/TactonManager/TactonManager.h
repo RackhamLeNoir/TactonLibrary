@@ -14,7 +14,6 @@ class TactonManager
 	public:
 		TactonManager(TactonPlayer *player);
 		
-//		void add(const Tacton &t);
 		void add(unsigned int nbframes, byte *desc);
 		const Tacton *get(byte numtacton) const;
 		
