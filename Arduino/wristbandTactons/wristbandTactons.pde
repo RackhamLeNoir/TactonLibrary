@@ -2,7 +2,7 @@
 #include <TactonPlayer.h>
 #include <Tacton.h>
 byte pins[] = {
-  3, 11, 9, 5};
+  3, 11, 5, 9};
 TactonPlayer player(4, pins);
 TactonManager manager(&player);
 
@@ -105,8 +105,8 @@ void loop()
         index = Serial.read();
         manager.play(index);
         command = 0;
-        Serial.print("Play");
-        Serial.println(index, DEC);
+  /*      Serial.print("Play");
+        Serial.println(index, DEC);*/
       }
       break;
     //schedule the play of a registered tacton
@@ -118,9 +118,9 @@ void loop()
             (((unsigned long)Serial.read()) << 16) | \
             (((unsigned long)Serial.read()) << 8) | \
             (((unsigned long)Serial.read()));
-        Serial.print("Plan ");
+/*        Serial.print("Plan ");
         Serial.println(timestamp, DEC);
-/*        Serial.print(" played at ");
+        Serial.print(" played at ");
         Serial.print(timestamp + start, DEC);
         Serial.print(" shift=");
         Serial.println(start, DEC);*/

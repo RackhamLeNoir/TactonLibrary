@@ -78,6 +78,28 @@ Tacton::Tacton(unsigned char pattern, unsigned int duration, unsigned int freque
 	_amplitudes[0] = amplitude;
 }
 
+Tacton::Tacton(char *pattern, unsigned int duration, unsigned int frequency, unsigned char amplitude)
+:_nbframes(1), _patterns(new unsigned char[1]), _durations(new unsigned int[1]), _frequencies(new unsigned int[1]), _amplitudes(new unsigned char[1])
+{
+	_patterns[0] = 0;
+	_durations[0] = duration;
+	_frequencies[0] = frequency;
+	_amplitudes[0] = amplitude;
+
+	setPattern(pattern);
+}
+
+Tacton::Tacton(const char *pattern, unsigned int duration, unsigned int frequency, unsigned char amplitude)
+:_nbframes(1), _patterns(new unsigned char[1]), _durations(new unsigned int[1]), _frequencies(new unsigned int[1]), _amplitudes(new unsigned char[1])
+{
+	_patterns[0] = 0;
+	_durations[0] = duration;
+	_frequencies[0] = frequency;
+	_amplitudes[0] = amplitude;
+
+	setPattern(pattern);
+}
+
 Tacton::Tacton(const Tacton &t)
 :_nbframes(t._nbframes), _patterns(new unsigned char[t._nbframes]), _durations(new unsigned int[t._nbframes]), _frequencies(new unsigned int[t._nbframes]), _amplitudes(new unsigned char[t._nbframes])
 {
@@ -116,7 +138,24 @@ __declspec(dllexport) void Tacton::setPattern(char *pattern)
 	setPattern(0, pattern);
 }
 
+__declspec(dllexport) void Tacton::setPattern(const char *pattern)
+{
+	setPattern(0, pattern);
+}
+
 __declspec(dllexport) void Tacton::setPattern(unsigned int frame, char *pattern)
+{
+	if (frame < _nbframes)
+	{
+		unsigned char t1 = pattern[0] == '1';
+		unsigned char t2 = pattern[1] == '1';
+		unsigned char t3 = pattern[2] == '1';
+		unsigned char t4 = pattern[3] == '1';
+		_patterns[frame] = (t1 << 3) | (t2 << 2) | (t3 << 1) | t4;
+	}
+}
+
+__declspec(dllexport) void Tacton::setPattern(unsigned int frame, const char *pattern)
 {
 	if (frame < _nbframes)
 	{

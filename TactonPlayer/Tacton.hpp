@@ -20,6 +20,8 @@ class Tacton
 		__declspec(dllexport) Tacton(char *desc);
 		__declspec(dllexport) Tacton(unsigned int nbframes, unsigned char *patterns, unsigned int *durations, unsigned int *frequencies, unsigned char *amplitudes);
 		//create a simple vibration
+		__declspec(dllexport) Tacton(char *pattern, unsigned int duration, unsigned int frequency, unsigned char amplitude);
+		__declspec(dllexport) Tacton(const char *pattern, unsigned int duration, unsigned int frequency, unsigned char amplitude);
 		__declspec(dllexport) Tacton(unsigned char pattern, unsigned int duration, unsigned int frequency, unsigned char amplitude);
 		__declspec(dllexport) Tacton(const Tacton &t);
 		__declspec(dllexport) ~Tacton();
@@ -29,7 +31,9 @@ class Tacton
 		__declspec(dllexport) void setPattern(unsigned int frame, char pattern);
 		//changes the pattern using string format
 		__declspec(dllexport) void setPattern(char *pattern);
+		__declspec(dllexport) void setPattern(const char *pattern);
 		__declspec(dllexport) void setPattern(unsigned int frame, char *pattern);
+		__declspec(dllexport) void setPattern(unsigned int frame, const char *pattern);
 		//changes the duration
 		__declspec(dllexport) void setDuration(unsigned int duration);
 		__declspec(dllexport) void setDuration(unsigned int frame, unsigned int duration);
