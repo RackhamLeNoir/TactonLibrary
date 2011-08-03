@@ -1,20 +1,10 @@
 #include <TactonManager.h>
-#include <TactonPlayer.h>
+#include <TactonPlayerWithAmplitude.h>
 #include <Tacton.h>
 byte pins[] = {
   3, 11, 5, 9};
-TactonPlayer player(4, pins);
+TactonPlayerWithAmplitude player(4, pins);
 TactonManager manager(&player);
-
-void* operator new(size_t n, void * p) { 
-  return p; 
-}
-void* operator new(size_t n) { 
-  return malloc(n); 
-}
-void operator delete (void * p) { 
-  free(p); 
-};
 
 byte command = 0;
 byte posbuf = 0;
@@ -26,10 +16,11 @@ boolean active = false;
 void setup()
 {
   Serial.begin(57600);
-  player.debug1();
+//  player.init();
+/*  player.debug1();
   player.debug2();
   player.debug3();
-  player.debug4();
+  player.debug4();*/
 }
 
 void loop()

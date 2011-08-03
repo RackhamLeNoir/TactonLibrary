@@ -11,7 +11,7 @@ class Tacton
 		Tacton(unsigned int nbframes, byte *desc);
 		~Tacton();
 		
-		void play(const TactonPlayer &player) const;
+		void play(TactonPlayer &player) const;
 		
 		boolean isValid() const { return _patterns && _durations && _frequencies && _amplitudes; }
 

@@ -1,7 +1,0 @@
-TactonManager	KEYWORD1
-get	KEYWORD2
-add	KEYWORD2
-clear	KEYWORD2
-play	KEYWORD2
-addPlay	KEYWORD2
-checkPlay	KEYWORD2

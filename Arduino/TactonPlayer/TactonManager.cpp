@@ -1,6 +1,16 @@
 #include "WProgram.h"
 #include "TactonManager.h"
 
+void* operator new(size_t n, void * p) { 
+  return p; 
+}
+void* operator new(size_t n) { 
+  return malloc(n); 
+}
+void operator delete (void * p) { 
+  free(p); 
+};
+
 TactonManager::TactonManager(TactonPlayer *player)
 : _nbplays(0), _nbtactons(0), _player(player)
 {

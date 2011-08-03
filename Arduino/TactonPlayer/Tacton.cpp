@@ -25,9 +25,11 @@ Tacton::~Tacton()
 	free(_amplitudes);
 }
 		
-void Tacton::play(const TactonPlayer &player) const
+void Tacton::play(TactonPlayer &player) const
 {	      
 	if (isValid())
+	{
 		for (int i = 0 ; i < _nbframes ; i++)
 			player.beep(_patterns[i], (long)_durations[i], _frequencies[i], _amplitudes[i]);
+	}
 }
