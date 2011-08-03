@@ -4,7 +4,7 @@
 
 #include <stdexcept>
 
-TactonPlayer::TactonPlayer(char *port)
+TactonPlayer::TactonPlayer(const char *port)
 :_comport(new SerialWindows(port))
 {
 }

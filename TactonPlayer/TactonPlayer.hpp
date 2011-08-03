@@ -5,7 +5,7 @@
 class TactonPlayer
 {
 	public:
-			__declspec(dllexport) TactonPlayer(char *port = "COM5");
+			__declspec(dllexport) TactonPlayer(const char *port = "COM5");
 			__declspec(dllexport) ~TactonPlayer();
 
 			//set the timestamp to 0, and watch for scheduled tactons

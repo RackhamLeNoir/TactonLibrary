@@ -7,7 +7,7 @@ using namespace std;
 #include <windows.h>
 #endif
 
-SerialWindows::SerialWindows(char *portName)
+SerialWindows::SerialWindows(const char *portName)
 :Serial(portName)
 {
     //Try to connect to the given port throuh CreateFile
