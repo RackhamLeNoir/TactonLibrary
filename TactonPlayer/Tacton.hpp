@@ -1,6 +1,16 @@
 #ifndef _TACTON_
 #define _TACTON_
 
+#define POS1_UP_FOREWARD 0x01
+#define POS1_UP_BACKWARD 0x02
+#define POS1_DOWN_FOREWARD 0x08
+#define POS1_DOWN_BACKWARD 0x04
+
+#define POS1_RIGHT 0x01
+#define POS1_UP 0x02
+#define POS1_LEFT 0x04
+#define POS1_DOWN 0x08
+
 class Tacton 
 {
 	public:
