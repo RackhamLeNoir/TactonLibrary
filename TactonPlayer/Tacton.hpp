@@ -6,10 +6,10 @@
 #define POS1_DOWN_FOREWARD 0x08
 #define POS1_DOWN_BACKWARD 0x04
 
-#define POS1_RIGHT 0x01
-#define POS1_UP 0x02
-#define POS1_LEFT 0x04
-#define POS1_DOWN 0x08
+#define POS2_RIGHT 0x01
+#define POS2_UP 0x02
+#define POS2_LEFT 0x04
+#define POS2_DOWN 0x08
 
 class Tacton 
 {
