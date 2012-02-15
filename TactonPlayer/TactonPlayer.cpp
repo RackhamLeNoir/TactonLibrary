@@ -5,8 +5,14 @@
 #include <stdexcept>
 
 TactonPlayer::TactonPlayer(const char *port)
-:_comport(new SerialWindows(port))
 {
+	try
+	{
+		_comport = new SerialWindows(port);
+	}
+	catch(...)
+	{
+	}
 }
 
 TactonPlayer::~TactonPlayer()
@@ -16,16 +22,21 @@ TactonPlayer::~TactonPlayer()
 
 void TactonPlayer::start()
 {
-	_comport->WriteData("S", 1);
+	if (_comport)
+		_comport->WriteData("S", 1);
 }
 
 void TactonPlayer::stop()
 {
-	_comport->WriteData("Q", 1);
+	if (_comport)
+		_comport->WriteData("Q", 1);
 }
 
 void TactonPlayer::regist(const Tacton &t)
 {
+	if (!_comport)
+		return;
+
 	unsigned int nbframes = t.getNbFrames();
 	unsigned char *buffer = new unsigned char[3 + 6 * nbframes];
 	buffer[0] = 'N';
@@ -38,6 +49,8 @@ void TactonPlayer::regist(const Tacton &t)
 
 unsigned int TactonPlayer::registFile(char *filename)
 {
+	if (!_comport)
+		return -1;
 	unsigned int nb = 0;
 
 	//load icons
@@ -66,6 +79,8 @@ unsigned int TactonPlayer::registFile(char *filename)
 
 void TactonPlayer::play(unsigned char index)
 {
+	if (!_comport)
+		return;
 	unsigned char buffer[2];
 	buffer[0] = 'T';
 	buffer[1] = index;
@@ -74,6 +89,9 @@ void TactonPlayer::play(unsigned char index)
 
 void TactonPlayer::play(const Tacton &t)
 {
+	if (!_comport)
+		return;
+
 	unsigned int nbframes = t.getNbFrames();
 	unsigned char *buffer = new unsigned char[3 + 6 * nbframes];
 	buffer[0] = 'V';
@@ -86,6 +104,9 @@ void TactonPlayer::play(const Tacton &t)
 
 void TactonPlayer::schedule(unsigned char index, unsigned long timestamp)
 {
+	if (!_comport)
+		return;
+
 	unsigned char buffer[6];
 	buffer[0] = 'P';
 	buffer[1] = index;
@@ -98,5 +119,6 @@ void TactonPlayer::schedule(unsigned char index, unsigned long timestamp)
 
 void TactonPlayer::debugRead(char *res, int nb) const
 {
-	_comport->ReadData(res, nb);
+	if (_comport)
+		_comport->ReadData(res, nb);
 }

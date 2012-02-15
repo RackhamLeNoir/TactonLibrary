@@ -15,12 +15,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="SerialWindows.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Serial.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Tacton.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -30,12 +24,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Tacton.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Serial.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="SerialWindows.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="TactonPlayer.cpp">
