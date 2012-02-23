@@ -1,4 +1,4 @@
-#include "WProgram.h"
+#include "Arduino.h"
 #include "TactonPlayerPrecise.h"
 
 #include "pins_arduino.h"

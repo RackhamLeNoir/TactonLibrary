@@ -1,7 +1,7 @@
 #ifndef _TACTONPLAYERWITHAMPLITUDE_
 #define _TACTONPLAYERWITHAMPLITUDE_
 
-#include "WProgram.h"
+#include "Arduino.h"
 
 #include <TactonPlayer.h>
 

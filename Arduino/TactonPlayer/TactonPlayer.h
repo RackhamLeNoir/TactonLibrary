@@ -1,7 +1,7 @@
 #ifndef _TACTONPLAYER_
 #define _TACTONPLAYER_
 
-#include "WProgram.h"
+#include "Arduino.h"
 
 //if using more than 8, change type of pattern
 #define MAXTACTORS 8

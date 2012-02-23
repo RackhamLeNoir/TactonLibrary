@@ -1,7 +1,7 @@
 #ifndef _TACTONPLAYERPRECISE_
 #define _TACTONPLAYERPRECISE_
 
-#include "WProgram.h"
+#include "Arduino.h"
 
 #include <TactonPlayer.h>
 

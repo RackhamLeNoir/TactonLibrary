@@ -1,7 +1,7 @@
 #ifndef _TACTONMANAGER_
 #define _TACTONMANAGER_
 
-#include "WProgram.h"
+#include "Arduino.h"
 
 #include <Tacton.h>
 #include <TactonPlayer.h>

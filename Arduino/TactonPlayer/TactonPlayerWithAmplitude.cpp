@@ -1,4 +1,4 @@
-#include "WProgram.h"
+#include "Arduino.h"
 #include "TactonPlayerWithAmplitude.h"
 
 TactonPlayerWithAmplitude::TactonPlayerWithAmplitude(byte nbtactors, byte *pins)
