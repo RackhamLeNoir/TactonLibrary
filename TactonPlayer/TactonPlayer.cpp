@@ -1,6 +1,6 @@
 #include "TactonPlayer.hpp"
 
-#include "SerialWindows.hpp"
+#include <ArduinoSerial\SerialWindows.hpp>
 
 #include <stdexcept>
 

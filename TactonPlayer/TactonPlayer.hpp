@@ -1,6 +1,6 @@
 #include "Tacton.hpp"
 
-#include "Serial.hpp"
+#include <ArduinoSerial\Serial.hpp>
 
 class TactonPlayer
 {
