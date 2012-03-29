@@ -1,5 +1,7 @@
 TactonPlayer	KEYWORD1
+TactonManager	KEYWORD1
 TactonPlayerPrecise	KEYWORD1
+TactonPlayerPreciseNew	KEYWORD1
 TactonPlayerWithAmplitude	KEYWORD1
 beep	KEYWORD2
 debug1	KEYWORD2
