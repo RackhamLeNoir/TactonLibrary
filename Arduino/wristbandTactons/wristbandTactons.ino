@@ -34,7 +34,7 @@ void loop()
   {
     if (command == 0)
       command = Serial.read();
-    switch(command)
+      switch(command)
     {
     //set the timestamp to 0, and watch for scheduled tactons
     case 'S':
@@ -84,6 +84,10 @@ void loop()
         }
         if (posbuf >= nbf*6)
         {
+/*          Serial.print("Received: *");
+          for (int i = 0 ; i < 6 ; i++)
+            Serial.print(buffer[i], HEX);
+          Serial.println("*");*/
           manager.play(nbf, buffer);
           posbuf = 0;
           command = 0;
