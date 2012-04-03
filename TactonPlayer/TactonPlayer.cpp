@@ -12,6 +12,7 @@ TactonPlayer::TactonPlayer(const char *port)
 	}
 	catch(...)
 	{
+		_comport = NULL;
 	}
 }
 
