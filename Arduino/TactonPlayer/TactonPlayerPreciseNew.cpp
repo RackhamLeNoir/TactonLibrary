@@ -32,20 +32,20 @@ void TactonPlayerPreciseNew::setFrequency(unsigned int frequency)
 		ocr = F_CPU / _frequency / 64 / 2 - 1;
 		prescalarbits = (1 << CS11) | (1 << CS10);
 	}
-	
+	/*
 	Serial.print("_frequency=");
 	Serial.print(_frequency, DEC);
 	Serial.print(" prescalar=");
 	Serial.print(prescalarbits, BIN);
 	Serial.print(" ocr=");
-	Serial.println(ocr, HEX);
+	Serial.println(ocr, HEX);*/
 
 	//set pre-scaler
 	TCCR1B |= prescalarbits;
 	//set duty cycle
 	OCR1A = ocr;
-	Serial.print(" OCR1A=");
-	Serial.println(OCR1A, HEX);
+	/*Serial.print(" OCR1A=");
+	Serial.println(OCR1A, HEX);*/
 	//OCR1B = ocr;
 /*
 	_ccper256cv = F_CPU / 512 / _frequency;
