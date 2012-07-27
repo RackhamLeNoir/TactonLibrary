@@ -116,4 +116,20 @@ void TactonManager::checkPlay()
 	}*/
 }
 
+void TactonManager::buzz(unsigned int nbf, byte *desc)
+{
+	byte *amplitudes = (byte *)malloc(nbf * sizeof(byte));
+	if (amplitudes == NULL)	
+		return;
 		
+	for (unsigned int i = 0 ; i < nbf ; i++)
+		amplitudes[i] = desc[i + 1];
+
+	_player->buzz(desc[0], nbf, amplitudes);
+	free(amplitudes);
+}
+
+void TactonManager::stop()
+{
+	_player->stop();
+}

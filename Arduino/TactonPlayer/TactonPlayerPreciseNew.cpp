@@ -57,6 +57,33 @@ void TactonPlayerPreciseNew::setFrequency(unsigned int frequency)
 	Serial.println(_ccper256cv, DEC);*/
 }
 
+//Start a vibration of a given frequency, with different amplitudes for each vibrator
+void TactonPlayerPreciseNew::buzz(unsigned int frequency, byte nbtactors, byte *amplitudes)
+{
+	if (nbtactors != _nbtactors)
+		return;
+		
+	sei();
+	init();
+	
+	//set the amplitudes
+	for (int i = 0 ; i < _nbtactors ; i++)
+		analogWrite(_pins[i], amplitudes[i]);
+}
+
+//Stop any vibration
+void TactonPlayerPreciseNew::stop()
+{
+	TCCR1A = 0;
+	//set duty cycle to 0
+	OCR1A = 0;
+	OCR1B = 0;
+	//clear the pattern
+	for (int i = 0 ; i < _nbtactors ; i++)
+		digitalWrite(_pins[i], LOW);
+}
+
+//Play a Tacton for a specified duration, frequency and amplitude
 void TactonPlayerPreciseNew::beep(byte pattern, unsigned long duration, unsigned int frequency, byte amplitude)
 {
 	sei();

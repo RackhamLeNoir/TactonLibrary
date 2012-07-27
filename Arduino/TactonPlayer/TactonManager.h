@@ -22,6 +22,10 @@ class TactonManager
 		void addPlay(byte index, unsigned long timestamp);
 		void checkPlay();
 		void setOffset(unsigned long timestamp);
+		
+		void buzz(unsigned int nbf, byte *desc);
+		void stop();
+
 
 		void clear();
 		

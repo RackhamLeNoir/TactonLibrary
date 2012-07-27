@@ -2,7 +2,7 @@
 #include <TactonPlayerPreciseNew.h>
 #include <Tacton.h>
 byte pins[] = {
-  3, 11, 5, 6};
+  6, 5, 11, 3};
 byte pwmPin = 9;
 
 TactonPlayerPreciseNew player(4, pins, 9);
@@ -124,6 +124,35 @@ void loop()
         manager.addPlay(index, timestamp);
         command = 0;
       }
+      break;
+    //sets a frequency for all the vibrators and an amplitude for each one
+    // BnFa1a2...an
+    // n = nb tactors
+    // F = frequency
+    // A1, A2, ..., an : amplitudes
+    case 'B':
+      if (nbf == 0 && Serial.available() >= 2)
+        nbf = (((unsigned int) Serial.read()) << 8) | ((unsigned int) Serial.read());
+      if (nbf > 0)
+      {
+        //DO NOT OVERFLOW max(nbf): 60
+        while (posbuf < nbf + 1 && Serial.available() > 0)
+        {
+          buffer[posbuf] = Serial.read();
+          posbuf++;
+        }
+        if (posbuf >= nbf + 1)
+        {
+          manager.buzz(nbf, buffer);
+          posbuf = 0;
+          command = 0;
+          nbf = 0;
+        }
+      }
+      break;
+    //stop any vibration
+    case 'A':
+      manager.stop();
       break;
     //unknown command: do nothing
     default:
