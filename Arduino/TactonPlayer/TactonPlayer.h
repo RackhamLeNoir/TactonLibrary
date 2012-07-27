@@ -15,10 +15,10 @@ class TactonPlayer
 
 		//Same frequency for all the vibrators, different amplitude.
 		//Vibrates until stop
-		void buzz(unsigned int frequency, byte nbtactors, byte amplitudes[]);
+		virtual void buzz(unsigned int frequency, byte nbtactors, byte amplitudes[]) = 0;
 
 		//Stop any vibration
-		void stop();
+		virtual void stop() = 0;
 
 		//8bits pattern => max 8 tactors, change type if using more
 		virtual void beep(byte pattern, unsigned long duration, unsigned int frequency, byte amplitude) = 0;
