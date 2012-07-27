@@ -12,7 +12,7 @@ class TactonPlayerPreciseNew: public TactonPlayer
 		
 		//Same frequency for all the vibrators, different amplitude.
 		//Vibrates until stop
-		void TactonPlayerPreciseNew::buzz(unsigned int frequency, byte nbtactors, byte *amplitudes);
+		void buzz(unsigned int frequency, byte nbtactors, byte *amplitudes);
 
 		//Stop any vibration
 		void stop();
