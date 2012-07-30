@@ -126,22 +126,22 @@ void loop()
       }
       break;
     //sets a frequency for all the vibrators and an amplitude for each one
-    // BnFa1a2...an
-    // n = nb tactors
-    // F = frequency
-    // A1, A2, ..., an : amplitudes
+    // BnFFa1a2...an
+    // n = nb tactors (1 byte)
+    // FF = frequency (2 bytes)
+    // A1, A2, ..., an : amplitudes (1 byte per tactor)
     case 'B':
-      if (nbf == 0 && Serial.available() >= 2)
-        nbf = (((unsigned int) Serial.read()) << 8) | ((unsigned int) Serial.read());
+      if (nbf == 0 && Serial.available() >= 1)
+        nbf = (unsigned int) Serial.read();
       if (nbf > 0)
       {
         //DO NOT OVERFLOW max(nbf): 60
-        while (posbuf < nbf + 1 && Serial.available() > 0)
+        while (posbuf < nbf + 2 && Serial.available() > 0)
         {
           buffer[posbuf] = Serial.read();
           posbuf++;
         }
-        if (posbuf >= nbf + 1)
+        if (posbuf >= nbf + 2)
         {
           manager.buzz(nbf, buffer);
           posbuf = 0;

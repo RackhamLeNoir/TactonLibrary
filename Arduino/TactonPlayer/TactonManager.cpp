@@ -125,9 +125,8 @@ void TactonManager::buzz(unsigned int nbf, byte *desc)
 	for (unsigned int i = 0 ; i < nbf ; i++)
 		amplitudes[i] = desc[i + 2];
 
-	_player->buzz((((unsigned int)(desc[1])) << 8) | ((unsigned int)(desc[0])), 
-		nbf, 
-		amplitudes);
+	unsigned int frequency = (((unsigned int)(desc[1])) << 8) | ((unsigned int)(desc[0]));
+	_player->buzz(frequency, nbf, amplitudes);
 	free(amplitudes);
 }
 

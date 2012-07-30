@@ -69,6 +69,8 @@ void TactonPlayerPreciseNew::buzz(unsigned int frequency, byte nbtactors, byte *
 	//set the amplitudes
 	for (int i = 0 ; i < _nbtactors ; i++)
 		analogWrite(_pins[i], amplitudes[i]);
+
+	setFrequency(frequency);
 }
 
 //Stop any vibration
