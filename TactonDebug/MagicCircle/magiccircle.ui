@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MagicCircleClass</class>
+ <widget class="QMainWindow" name="MagicCircleClass">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>268</width>
+    <height>448</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MagicCircle</string>
+  </property>
+  <widget class="QWidget" name="centralWidget">
+   <layout class="QVBoxLayout" name="verticalLayout">
+    <item>
+     <widget class="QGraphicsView" name="_canvas">
+      <property name="minimumSize">
+       <size>
+        <width>250</width>
+        <height>250</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>250</width>
+        <height>250</height>
+       </size>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <layout class="QGridLayout" name="gridLayout_2">
+      <item row="2" column="1">
+       <widget class="QLabel" name="label_2">
+        <property name="text">
+         <string>Speed (degrees/s)</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="2">
+       <widget class="QSpinBox" name="_speed">
+        <property name="minimum">
+         <number>1</number>
+        </property>
+        <property name="maximum">
+         <number>720</number>
+        </property>
+        <property name="value">
+         <number>30</number>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="1">
+       <widget class="QLabel" name="label_3">
+        <property name="text">
+         <string>Resolution (steps/360°)</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="2">
+       <widget class="QComboBox" name="_direction">
+        <item>
+         <property name="text">
+          <string>Clockwise</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Counterclockwise</string>
+         </property>
+        </item>
+       </widget>
+      </item>
+      <item row="1" column="1">
+       <widget class="QLabel" name="label">
+        <property name="text">
+         <string>Direction</string>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="2">
+       <widget class="QSpinBox" name="_resolution">
+        <property name="minimum">
+         <number>4</number>
+        </property>
+        <property name="maximum">
+         <number>360</number>
+        </property>
+        <property name="value">
+         <number>16</number>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1">
+       <widget class="QLabel" name="label_4">
+        <property name="text">
+         <string>Frequency</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="2">
+       <widget class="QSpinBox" name="_frequency">
+        <property name="minimum">
+         <number>1</number>
+        </property>
+        <property name="maximum">
+         <number>400</number>
+        </property>
+        <property name="value">
+         <number>250</number>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+    <item>
+     <layout class="QHBoxLayout" name="horizontalLayout">
+      <item>
+       <widget class="QPushButton" name="_stop">
+        <property name="text">
+         <string>Stop</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="_play">
+        <property name="text">
+         <string>Play</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+   </layout>
+  </widget>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <tabstops>
+  <tabstop>_frequency</tabstop>
+  <tabstop>_direction</tabstop>
+  <tabstop>_speed</tabstop>
+  <tabstop>_resolution</tabstop>
+  <tabstop>_play</tabstop>
+  <tabstop>_stop</tabstop>
+  <tabstop>_canvas</tabstop>
+ </tabstops>
+ <resources>
+  <include location="magiccircle.qrc"/>
+ </resources>
+ <connections/>
+</ui>

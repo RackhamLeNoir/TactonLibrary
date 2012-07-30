@@ -1,32 +1,44 @@
 #include "Tacton.hpp"
 
+#ifdef __MACOSX__
+#include <Serial.hpp>
+#define EXPORTED
+#else
 #include <ArduinoSerial\Serial.hpp>
+#define EXPORTED __declspec(dllexport)
+#endif
 
 class TactonPlayer
 {
 	public:
-			__declspec(dllexport) TactonPlayer(const char *port = "COM5");
-			__declspec(dllexport) ~TactonPlayer();
+			EXPORTED TactonPlayer(const char *port = "COM5");
+			EXPORTED ~TactonPlayer();
 
 			//set the timestamp to 0, and watch for scheduled tactons
-			void __declspec(dllexport) start();
+			EXPORTED void start();
 			//stop watching scheduled tactons, and erase registered tactons
-			void __declspec(dllexport) stop();
+			EXPORTED void stop();
 
 			//register a tacton
-			__declspec(dllexport) void regist(const Tacton &t);
+			EXPORTED void regist(const Tacton &t);
 			//register a list of tactons in a file, returns the number of tactons loaded
-			__declspec(dllexport) unsigned int registFile(char *filename);
+			EXPORTED unsigned int registFile(char *filename);
 
 			//play a registered tacton
-			__declspec(dllexport) void play(unsigned char index);
+			EXPORTED void play(unsigned char index);
 			//play a specified tacton
-			__declspec(dllexport) void play(const Tacton &t);
+			EXPORTED void play(const Tacton &t);
 			//schedule the play of a registered tacton
-			__declspec(dllexport) void schedule(unsigned char index, unsigned long timestamp);
+			EXPORTED void schedule(unsigned char index, unsigned long timestamp);
+
+			//sets a given frequency for all vibrators, and an amplitude for each vibrator
+			//vibrates until explicitely stop
+			EXPORTED void buzz(unsigned int frequency, unsigned int nbtactors, unsigned char *amplitudes);
+			//stop any vibration
+			EXPORTED void stopBuzz();
 
 			//read on the serial port
-			__declspec(dllexport) void debugRead(char *res, int nb) const;
+			EXPORTED void debugRead(char *res, int nb) const;
 
 private:
 		Serial *_comport;

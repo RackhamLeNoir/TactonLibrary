@@ -9,7 +9,7 @@ TactonDebug::TactonDebug(QWidget *parent, Qt::WFlags flags)
 {
 	try
 	{
-		_tactonPlayer = new TactonPlayer("COM5");
+		_tactonPlayer = new TactonPlayer("COM4");
 	}
 	catch(...)
 	{
@@ -17,6 +17,9 @@ TactonDebug::TactonDebug(QWidget *parent, Qt::WFlags flags)
 	}
 
 	setupUi(this);
+
+	layout()->setSizeConstraint(QLayout::SetFixedSize);
+
 	QObject::connect(frequencebox, SIGNAL(textChanged(const QString &)), this, SLOT(setFrequency(const QString &)));
 	QObject::connect(frequenceslider, SIGNAL(valueChanged(int)), this, SLOT(setFrequency(int)));
 	QObject::connect(amplitudebox, SIGNAL(textChanged(const QString &)), this, SLOT(setAmplitude(const QString &)));

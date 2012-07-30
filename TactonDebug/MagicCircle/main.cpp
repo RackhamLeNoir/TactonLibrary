@@ -1,11 +1,10 @@
-#include "tactondebug.h"
+#include "magiccircle.h"
 #include <QtGui/QApplication>
 
 int main(int argc, char *argv[])
 {
 	QApplication a(argc, argv);
-	TactonDebug w;
+	MagicCircle w;
 	w.show();
-	w.raise();
 	return a.exec();
 }

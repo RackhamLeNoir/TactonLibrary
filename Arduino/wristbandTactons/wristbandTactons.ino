@@ -153,6 +153,7 @@ void loop()
     //stop any vibration
     case 'A':
       manager.stop();
+      command = 0;
       break;
     //unknown command: do nothing
     default:
