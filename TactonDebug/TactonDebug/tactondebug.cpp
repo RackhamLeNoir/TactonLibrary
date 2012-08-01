@@ -5,7 +5,7 @@ int TactonDebug::MaxAmplitude = 255;
 int TactonDebug::MaxDuration = 2000;
 
 TactonDebug::TactonDebug(QWidget *parent, Qt::WFlags flags)
-	: QMainWindow(parent, flags)
+:QMainWindow(parent, flags)
 {
 	try
 	{
@@ -18,7 +18,7 @@ TactonDebug::TactonDebug(QWidget *parent, Qt::WFlags flags)
 
 	setupUi(this);
 
-	layout()->setSizeConstraint(QLayout::SetFixedSize);
+	//layout()->setSizeConstraint(QLayout::SetFixedSize);
 
 	QObject::connect(frequencebox, SIGNAL(textChanged(const QString &)), this, SLOT(setFrequency(const QString &)));
 	QObject::connect(frequenceslider, SIGNAL(valueChanged(int)), this, SLOT(setFrequency(int)));
