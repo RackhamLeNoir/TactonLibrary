@@ -131,7 +131,7 @@ void TactonPlayer::setFrequency(unsigned int frequency)
 	_comport->WriteData(buffer, 3);
 }
 
-void TactonPlayer::setAmplitudes(unsigned int nbtactors, unsigned char *amplitudes)
+void TactonPlayer::setAmplitudes(unsigned char nbtactors, unsigned char *amplitudes)
 {
 	if (!_comport)
 		return;
