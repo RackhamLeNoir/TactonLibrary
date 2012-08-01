@@ -31,9 +31,10 @@ class TactonPlayer
 			//schedule the play of a registered tacton
 			EXPORTED void schedule(unsigned char index, unsigned long timestamp);
 
-			//sets a given frequency for all vibrators, and an amplitude for each vibrator
-			//vibrates until explicitely stop
-			EXPORTED void buzz(unsigned int frequency, unsigned int nbtactors, unsigned char *amplitudes);
+			//sets an amplitude for each vibrator
+			EXPORTED void setAmplitudes(unsigned int nbtactors, unsigned char *amplitudes);
+			//sets a frequency for all vibrator
+			EXPORTED void setFrequency(unsigned int frequency);
 			//stop any vibration
 			EXPORTED void stopBuzz();
 

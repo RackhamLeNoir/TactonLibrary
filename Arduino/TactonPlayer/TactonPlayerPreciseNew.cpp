@@ -62,6 +62,12 @@ void TactonPlayerPreciseNew::buzz(unsigned int frequency, byte nbtactors, byte *
 {
 	if (nbtactors != _nbtactors)
 		return;
+
+	//clear
+	TCCR1A = 0;
+	//set duty cycle to 0
+	OCR1A = 0;
+	OCR1B = 0;
 		
 	sei();
 	init();

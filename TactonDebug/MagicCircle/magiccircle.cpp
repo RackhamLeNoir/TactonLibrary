@@ -22,6 +22,7 @@ MagicCircle::MagicCircle(QWidget *parent, Qt::WFlags flags)
 	setDirection(_direction->currentText());
 	setResolution(_resolution->value());
 	setSpeed(_speed->value());
+	setFrequency(_frequency->value());
 
 	connect(_play, SIGNAL(clicked(bool)), this, SLOT(play(bool)));
 	connect(_stop, SIGNAL(clicked(bool)), this, SLOT(stop(bool)));
@@ -29,6 +30,7 @@ MagicCircle::MagicCircle(QWidget *parent, Qt::WFlags flags)
 	connect(_direction, SIGNAL(editTextChanged(const QString &)), this, SLOT(setDirection(const QString &)));
 	connect(_speed, SIGNAL(valueChanged(int)), this, SLOT(setSpeed(int)));
 	connect(_resolution, SIGNAL(valueChanged(int)), this, SLOT(setResolution(int)));
+	connect(_frequency, SIGNAL(valueChanged(int)), this, SLOT(setFrequency(int)));
 
 	connect(this, SIGNAL(setAngle(float)), SLOT(tactileFeedback(float)));
 	connect(this, SIGNAL(setAngle(float)), SLOT(visualFeedback(float)));
@@ -84,6 +86,11 @@ void MagicCircle::setResolution(int res)
 	setSpeed(_speed->value());
 }
 
+void MagicCircle::setFrequency(int frequency)
+{
+	_tactonPlayer->setFrequency(frequency);
+}
+
 void MagicCircle::tactileFeedback(float angle)
 {
 	unsigned char amplitudes[4];
@@ -101,7 +108,7 @@ void MagicCircle::tactileFeedback(float angle)
 	else
 		amplitudes[2] = - 255 * cos(angle * M_PI / 180);
 
-	_tactonPlayer->buzz(_frequency->value(), 4, amplitudes);
+	_tactonPlayer->setAmplitudes(4, amplitudes);
 }
 
 void MagicCircle::visualFeedback(float)

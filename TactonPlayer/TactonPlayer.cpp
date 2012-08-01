@@ -119,18 +119,28 @@ void TactonPlayer::schedule(unsigned char index, unsigned long timestamp)
 	_comport->WriteData(buffer, 6);
 }
 
-void TactonPlayer::buzz(unsigned int frequency, unsigned int nbtactors, unsigned char *amplitudes)
+void TactonPlayer::setFrequency(unsigned int frequency)
 {
 	if (!_comport)
 		return;
 
-	unsigned char *buffer = new unsigned char[4 + nbtactors];
-	buffer[0] = 'B';
+	unsigned char buffer[3];
+	buffer[0] = 'F';
+	buffer[1] = (unsigned char)((frequency & 0x0000ff00) >> 8);
+	buffer[2] = (unsigned char)(frequency & 0x000000ff);
+	_comport->WriteData(buffer, 3);
+}
+
+void TactonPlayer::setAmplitudes(unsigned int nbtactors, unsigned char *amplitudes)
+{
+	if (!_comport)
+		return;
+
+	unsigned char *buffer = new unsigned char[2 + nbtactors];
+	buffer[0] = 'A';
 	buffer[1] = nbtactors;
-	buffer[2] = (unsigned char)((frequency & 0x0000ff00) >> 8);
-	buffer[3] = (unsigned char)(frequency & 0x000000ff);
-	memcpy(buffer + 4, amplitudes, nbtactors);
-	_comport->WriteData(buffer, 4 + nbtactors);
+	memcpy(buffer + 2, amplitudes, nbtactors);
+	_comport->WriteData(buffer, 2 + nbtactors);
 	delete[] buffer;
 }
 
@@ -139,7 +149,7 @@ void TactonPlayer::stopBuzz()
 	if (!_comport)
 		return;
 
-	_comport->WriteData("A", 1);
+	_comport->WriteData("B", 1);
 }
 
 void TactonPlayer::debugRead(char *res, int nb) const

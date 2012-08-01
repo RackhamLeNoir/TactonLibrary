@@ -24,6 +24,7 @@ class MagicCircle : public QMainWindow, Ui::MagicCircleClass
 		void setDirection(const QString &);
 		void setSpeed(int);
 		void setResolution(int);
+		void setFrequency(int);
 
 		void tactileFeedback(float);
 		void visualFeedback(float);
