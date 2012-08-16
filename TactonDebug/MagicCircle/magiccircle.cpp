@@ -7,7 +7,7 @@ MagicCircle::MagicCircle(QWidget *parent, Qt::WFlags flags)
 {
 	try
 	{
-		_tactonPlayer = new TactonPlayer("COM4");
+		_tactonPlayer = new TactonPlayer("COM8");
 	}
 	catch(...)
 	{
@@ -27,7 +27,7 @@ MagicCircle::MagicCircle(QWidget *parent, Qt::WFlags flags)
 	connect(_play, SIGNAL(clicked(bool)), this, SLOT(play(bool)));
 	connect(_stop, SIGNAL(clicked(bool)), this, SLOT(stop(bool)));
 
-	connect(_direction, SIGNAL(editTextChanged(const QString &)), this, SLOT(setDirection(const QString &)));
+	connect(_direction, SIGNAL(currentIndexChanged (const QString &)), this, SLOT(setDirection(const QString &)));
 	connect(_speed, SIGNAL(valueChanged(int)), this, SLOT(setSpeed(int)));
 	connect(_resolution, SIGNAL(valueChanged(int)), this, SLOT(setResolution(int)));
 	connect(_frequency, SIGNAL(valueChanged(int)), this, SLOT(setFrequency(int)));
