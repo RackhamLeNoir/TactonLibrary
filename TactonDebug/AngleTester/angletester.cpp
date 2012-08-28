@@ -7,7 +7,7 @@ AngleTester::AngleTester(QWidget *parent, Qt::WFlags flags)
 {
 	try
 	{
-		_tactonPlayer = new TactonPlayer("COM8");
+		_tactonPlayer = new TactonPlayer("COM4");
 	}
 	catch(...)
 	{
@@ -41,6 +41,8 @@ void AngleTester::setAngle(int angle)
 {
 	unsigned char amplitudes[4];
 	memset(amplitudes, 0, 4);
+
+//	angle = 90;
 
 	//vertical
 	if (angle < 180)

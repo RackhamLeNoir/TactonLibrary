@@ -9,7 +9,7 @@ TactonDebug::TactonDebug(QWidget *parent, Qt::WFlags flags)
 {
 	try
 	{
-		_tactonPlayer = new TactonPlayer("COM8");
+		_tactonPlayer = new TactonPlayer("COM4");
 	}
 	catch(...)
 	{
