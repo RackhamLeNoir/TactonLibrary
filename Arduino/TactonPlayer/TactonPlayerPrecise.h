@@ -27,6 +27,8 @@ class TactonPlayerPrecise: public TactonPlayer
 		static uint8_t _portB;
 		static uint8_t _portC;
 		static uint8_t _portD;
+		
+		unsigned int _frequency;
 };
 
 #endif

@@ -21,10 +21,6 @@ void TactonPlayerWithAmplitude::init() const
 void TactonPlayerWithAmplitude::beep(byte pattern, unsigned long duration, unsigned int frequency, byte amplitude)
 {
 	init();
-	setFrequency(frequency);
-	setAmplitude(amplitude);
-	setDuration(duration);
-	setPattern(pattern);
 
     int i;
     long del = (long)(1000000 / ((long)frequency));

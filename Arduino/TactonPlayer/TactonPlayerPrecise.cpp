@@ -35,14 +35,15 @@ void TactonPlayerPrecise::init() const
 
 void TactonPlayerPrecise::setFrequency(unsigned int frequency)
 {
-	TactonPlayer::setFrequency(frequency);
+//	TactonPlayer::setFrequency(frequency);
+	_frequency = frequency;
 	
-	unsigned long ocr = F_CPU / _frequency / 2 - 1;
+	unsigned long ocr = F_CPU / frequency / 2 - 1;
 	byte prescalarbits = (1 << CS10);
 	
 	if (ocr > 0xffff)
 	{
-		ocr = F_CPU / _frequency / 64 / 2 - 1;
+		ocr = F_CPU / frequency / 64 / 2 - 1;
 		prescalarbits = (1 << CS11) | (1 << CS10);
 	}
 	/*
@@ -67,8 +68,8 @@ void TactonPlayerPrecise::setFrequency(unsigned int frequency)
 
 void TactonPlayerPrecise::setDuration(unsigned long duration)
 {
-	TactonPlayer::setDuration(duration);
-	_toggle_count = 2 * _frequency * _duration / 1000;
+//	TactonPlayer::setDuration(duration);
+	_toggle_count = 2 * _frequency * duration / 1000;
 
 /*	_cv = (F_CPU / 1000 * _duration) / 256 / _ccper256cv;
 	_currentcv = 0;
@@ -81,7 +82,7 @@ void TactonPlayerPrecise::setDuration(unsigned long duration)
 
 void TactonPlayerPrecise::setAmplitude(byte amplitude)
 {
-	TactonPlayer::setAmplitude(amplitude);
+//	TactonPlayer::setAmplitude(amplitude);
 //	OCR2A = amplitude;
 	
 /*	Serial.print("_amplitude=");
@@ -90,14 +91,14 @@ void TactonPlayerPrecise::setAmplitude(byte amplitude)
 
 void TactonPlayerPrecise::setPattern(byte pattern)
 {
-	TactonPlayer::setPattern(pattern);
+	//TactonPlayer::setPattern(pattern);
 
 	_portB = _portC = _portD = 0;
 	for (int i = 0 ; i < _nbtactors ; i++)
 	{
 		pinMode(_pins[i], OUTPUT);
 		volatile uint8_t * port = portOutputRegister(digitalPinToPort(_pins[i]));
-		if (_pattern & (1 << i))
+		if (pattern & (1 << i))
 		{
 			if (port == &PORTB)
 				_portB |= digitalPinToBitMask(_pins[i]);
@@ -136,6 +137,7 @@ void TactonPlayerPrecise::beep(byte pattern, unsigned long duration, unsigned in
 	setFrequency(frequency);
 //	setAmplitude(amplitude);
 	setDuration(duration);
+	
 	setPattern(pattern);
 	//_active = true;
 	turnOnPins();

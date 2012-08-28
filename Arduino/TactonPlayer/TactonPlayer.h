@@ -13,9 +13,13 @@ class TactonPlayer
 	public:
 		TactonPlayer(byte nbtactors, byte *pins);
 
-		//Same frequency for all the vibrators, different amplitude.
-		//Vibrates until stop
-		virtual void buzz(unsigned int frequency, byte nbtactors, byte amplitudes[]) = 0;
+		virtual void setFrequency(unsigned int frequency) = 0;//{ _frequency = frequency; }
+//		virtual void setDuration(unsigned long duration) { _duration = duration; }
+//		virtual void setAmplitude(byte amplitude) { _amplitude = amplitude; }
+		//set a different amplitude for each vibrator
+		virtual void setAmplitudes(byte nbtactors, byte amplitudes[]) = 0;
+//		virtual void setPattern(byte pattern) { _pattern = pattern; }
+
 
 		//Stop any vibration
 		virtual void stop() = 0;
@@ -29,19 +33,13 @@ class TactonPlayer
 		void debug4() { analogWrite(_pins[3], 255); delay(100); analogWrite(_pins[3], 0); delay(100); }
 	*/
 	protected:
-		virtual void init() const {}
-		
-		virtual void setFrequency(unsigned int frequency) { _frequency = frequency; }
-		virtual void setDuration(unsigned long duration) { _duration = duration; }
-		virtual void setAmplitude(byte amplitude) { _amplitude = amplitude; }
-		virtual void setPattern(byte pattern) { _pattern = pattern; }
-
+		virtual void init() const = 0;// {}
 		byte _nbtactors;
 		byte *_pins;
-		byte _pattern;
+/*		byte _pattern;
 		unsigned long _duration;
 		unsigned int _frequency;
-		byte _amplitude;
+		byte _amplitude;*/
 };
 
 #endif

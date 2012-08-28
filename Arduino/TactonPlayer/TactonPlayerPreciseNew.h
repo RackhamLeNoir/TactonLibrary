@@ -10,9 +10,9 @@ class TactonPlayerPreciseNew: public TactonPlayer
 	public:
 		TactonPlayerPreciseNew(byte nbtactors, byte *pins, byte pwmPin);
 		
-		//Same frequency for all the vibrators, different amplitude.
-		//Vibrates until stop
-		void buzz(unsigned int frequency, byte nbtactors, byte *amplitudes);
+		void setFrequency(unsigned int frequency);
+		//sets a different amplitude for each vibrator
+		void setAmplitudes(byte nbtactors, byte *amplitudes);
 
 		//Stop any vibration
 		void stop();
@@ -21,8 +21,7 @@ class TactonPlayerPreciseNew: public TactonPlayer
 		void beep(byte pattern, unsigned long duration, unsigned int frequency, byte amplitude);
 
 	private:
-		void init() const;		
-		void setFrequency(unsigned int frequency);
+		void init() const;
 		//void setDuration(unsigned long duration);
 		//void setAmplitude(byte amplitude);
 		//void setPattern(byte pattern);

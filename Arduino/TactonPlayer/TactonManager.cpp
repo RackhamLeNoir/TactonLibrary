@@ -116,18 +116,14 @@ void TactonManager::checkPlay()
 	}*/
 }
 
-void TactonManager::buzz(unsigned int nbf, byte *desc)
+void TactonManager::setFrequency(unsigned int freq)
 {
-	byte *amplitudes = (byte *)malloc(nbf * sizeof(byte));
-	if (amplitudes == NULL)	
-		return;
-		
-	for (unsigned int i = 0 ; i < nbf ; i++)
-		amplitudes[i] = desc[i + 2];
+	_player->setFrequency(freq);
+}
 
-	unsigned int frequency = (((unsigned int)(desc[1])) << 8) | ((unsigned int)(desc[0]));
-	_player->buzz(frequency, nbf, amplitudes);
-	free(amplitudes);
+void TactonManager::setAmplitudes(unsigned int nbf, byte *desc)
+{
+	_player->setAmplitudes(nbf, desc);
 }
 
 void TactonManager::stop()
