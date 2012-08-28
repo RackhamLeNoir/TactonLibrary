@@ -85,7 +85,7 @@ void loop()
         }
         if (posbuf >= nbf*6)
         {
-/*          Serial.print("Received: *");
+          /*Serial.print("Received: *");
           for (int i = 0 ; i < 6 ; i++)
             Serial.print(buffer[i], HEX);
           Serial.println("*");*/
@@ -163,6 +163,11 @@ void loop()
     //stop any vibration
     case 'B':
       manager.stop();
+      command = 0;
+      break;
+    //Ask for feedback
+    case 'I':
+      Serial.write("I'm still alive");
       command = 0;
       break;
     //unknown command: do nothing
