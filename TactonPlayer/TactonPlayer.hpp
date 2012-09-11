@@ -5,41 +5,51 @@
 #define EXPORTED
 #else
 #include <ArduinoSerial\Serial.hpp>
-#define EXPORTED __declspec(dllexport)
+	#ifdef _WINDLL
+	#define EXPORTED __declspec(dllexport)
+	#else
+	#define EXPORTED __declspec(dllimport)
+	#endif
 #endif
 
-class TactonPlayer
+class EXPORTED TactonPlayer
 {
 	public:
-			EXPORTED TactonPlayer(const char *port = "COM5");
-			EXPORTED ~TactonPlayer();
+			TactonPlayer(const char *port = "COM5");
+			~TactonPlayer();
 
 			//set the timestamp to 0, and watch for scheduled tactons
-			EXPORTED void start();
+			void start();
 			//stop watching scheduled tactons, and erase registered tactons
-			EXPORTED void stop();
+			void stop();
 
 			//register a tacton
-			EXPORTED void regist(const Tacton &t);
+			void regist(const Tacton &t);
 			//register a list of tactons in a file, returns the number of tactons loaded
-			EXPORTED unsigned int registFile(char *filename);
+			unsigned int registFile(char *filename);
 
 			//play a registered tacton
-			EXPORTED void play(unsigned char index);
+			void play(unsigned char index);
 			//play a specified tacton
-			EXPORTED void play(const Tacton &t);
+			void play(const Tacton &t);
 			//schedule the play of a registered tacton
-			EXPORTED void schedule(unsigned char index, unsigned long timestamp);
+			void schedule(unsigned char index, unsigned long timestamp);
 
 			//sets an amplitude for each vibrator
-			EXPORTED void setAmplitudes(unsigned char nbtactors, unsigned char *amplitudes);
+			void setAmplitudes(unsigned char nbtactors, unsigned char *amplitudes);
 			//sets a frequency for all vibrator
-			EXPORTED void setFrequency(unsigned int frequency);
+			void setFrequency(unsigned int frequency);
 			//stop any vibration
-			EXPORTED void stopBuzz();
+			void stopBuzz();
+
+			//sets a vibration on a virtual circle around 4 vibrators
+			void playAngle(unsigned int angle);
+
+			//plays an animation alterning a series of angles
+			void playAngleSequence(unsigned char nbangles, unsigned int frameduration, unsigned int nbframes, unsigned int *angles);
 
 			//read on the serial port
-			EXPORTED void debugRead(char *res, int nb) const;
+			void debugRead(char *res, int nb) const;
 
 private:
 		Serial *_comport;

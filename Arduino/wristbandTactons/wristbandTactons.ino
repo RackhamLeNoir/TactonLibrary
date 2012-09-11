@@ -29,13 +29,13 @@ void loop()
 {
   byte index;
   unsigned long timestamp;
-  unsigned int freq;
+  unsigned int param;
 
   if (Serial.available() > 0)
   {
     if (command == 0)
       command = Serial.read();
-      switch(command)
+    switch(command)
     {
     //set the timestamp to 0, and watch for scheduled tactons
     case 'S':
@@ -154,10 +154,50 @@ void loop()
     case 'F':
       if (Serial.available() >= 2)
       {
-        freq = (((unsigned long)Serial.read()) << 8) | \
+        param = (((unsigned long)Serial.read()) << 8) | \
             (((unsigned long)Serial.read()));
-        manager.setFrequency(freq);
+        manager.setFrequency(param);
         command = 0;
+      }
+      break;
+    //sets an angle in degrees
+    case 'a':
+      if (Serial.available() >= 2)
+      {
+        param = (((unsigned long)Serial.read()) << 8) | \
+            (((unsigned long)Serial.read()));
+        manager.setAngle(param);
+        command = 0;
+      }
+      break;
+    //sets a series on angles
+    // sNDnA1A2...AN
+    // N = nb angles (1 byte)
+    // D = duration in ms of each frame (2 bytes)
+    // n = number of frames (2 bytes)
+    // A1, A2, ..., AN : angles (2 bytes per tactor)
+    case 's':
+      if (nbf == 0 && Serial.available() >= 1)
+        nbf = (unsigned int) Serial.read();
+      if (nbf > 0)
+      {
+        //DO NOT OVERFLOW max(nbf): 60
+        while (posbuf < 2 * nbf + 4 && Serial.available() > 0)
+        {
+          buffer[posbuf] = Serial.read();
+          //Serial.print(buffer[posbuf], HEX);
+          posbuf++;
+        }
+        if (posbuf >= 2 * nbf + 4)
+        {
+          manager.setAngleSequence(nbf, \
+            (buffer[0] << 8) | buffer[1], \
+            (buffer[2] << 8) | buffer[3], \
+            buffer + 4);
+          posbuf = 0;
+          command = 0;
+          nbf = 0;
+        }
       }
       break;
     //stop any vibration

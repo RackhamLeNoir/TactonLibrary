@@ -1,5 +1,6 @@
 #include "tactondebug.h"
 
+#include <QDebug>
 int TactonDebug::MaxFrequency = 400;
 int TactonDebug::MaxAmplitude = 255;
 int TactonDebug::MaxDuration = 2000;
@@ -14,6 +15,7 @@ TactonDebug::TactonDebug(QWidget *parent, Qt::WFlags flags)
 	catch(...)
 	{
 		_tactonPlayer = NULL;
+		qDebug() << "No wristband found";
 	}
 
 	setupUi(this);

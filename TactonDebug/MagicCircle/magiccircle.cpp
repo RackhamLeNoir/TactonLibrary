@@ -77,7 +77,7 @@ void MagicCircle::setDirection(const QString &direction)
 
 void MagicCircle::setSpeed(int speed)
 {
-	_timer.setInterval(_stepsize / speed * 1000);
+	_timer.setInterval(_stepsize / speed * 1000.0);
 }
 
 void MagicCircle::setResolution(int res)
@@ -93,6 +93,9 @@ void MagicCircle::setFrequency(int frequency)
 
 void MagicCircle::tactileFeedback(float angle)
 {
+	_tactonPlayer->playAngle(angle);// * M_PI / 180);
+	return;
+
 	unsigned char amplitudes[4];
 	memset(amplitudes, 0, 4);
 

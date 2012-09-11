@@ -144,6 +144,42 @@ void TactonPlayer::setAmplitudes(unsigned char nbtactors, unsigned char *amplitu
 	delete[] buffer;
 }
 
+void TactonPlayer::playAngle(unsigned int angle)
+{
+	if (!_comport)
+		return;
+
+	unsigned char *buffer = new unsigned char[3];
+	buffer[0] = 'a';
+	buffer[1] = (unsigned char)((angle & 0x0000ff00) >> 8);
+	buffer[2] = (unsigned char)(angle & 0x000000ff);
+	_comport->WriteData(buffer, 3);
+	delete[] buffer;
+}
+
+//plays an animation alterning a series of angles
+void TactonPlayer::playAngleSequence(unsigned char nbangles, unsigned int frameduration, unsigned int nbframes, unsigned int *angles)
+{
+	if (!_comport)
+		return;
+
+	unsigned char *buffer = new unsigned char[6 + 2 * nbangles];
+	buffer[0] = 's';
+	buffer[1] = nbangles;
+	buffer[2] = (unsigned char)((frameduration & 0x0000ff00) >> 8);
+	buffer[3] = (unsigned char)(frameduration & 0x000000ff);
+	buffer[4] = (unsigned char)((nbframes & 0x0000ff00) >> 8);
+	buffer[5] = (unsigned char)(nbframes & 0x000000ff);
+
+	for (int i = 0 ; i < nbangles ; i++)
+	{
+		buffer[6 + 2 * i] = (angles[i]  & 0x0000ff00) >> 8;
+		buffer[6 + 2 * i + 1] = angles[i]  & 0x000000ff;
+	}
+	_comport->WriteData(buffer, 6 + 2 * nbangles);
+	delete[] buffer;
+}
+
 void TactonPlayer::stopBuzz()
 {
 	if (!_comport)

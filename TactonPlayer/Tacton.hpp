@@ -14,10 +14,14 @@
 #ifdef __MACOSX__
 #define EXPORTED
 #else
-#define EXPORTED __declspec(dllexport)
+	#ifdef _WINDLL
+	#define EXPORTED __declspec(dllexport)
+	#else 
+	#define EXPORTED __declspec(dllimport)
+	#endif
 #endif
 
-class Tacton 
+class EXPORTED Tacton 
 {
 	public:
 		//creates a tacton using the raw data format
@@ -26,46 +30,46 @@ class Tacton
 		//2 for the duration
 		//2 for the frequency
 		//1 for the amplitude
-		EXPORTED Tacton(unsigned int nbframes, unsigned char *desc);
+		Tacton(unsigned int nbframes, unsigned char *desc);
 		//creates a tacton using the CSV format
 		//1 field for the number of frames, then 4 fields per frame 
 		//1 for the pattern
 		//1 for the duration
 		//1 for the frequency
 		//1 for the amplitude
-		EXPORTED Tacton(char *desc);
-		EXPORTED Tacton(unsigned int nbframes, unsigned char *patterns, unsigned int *durations, unsigned int *frequencies, unsigned char *amplitudes);
+		Tacton(char *desc);
+		Tacton(unsigned int nbframes, unsigned char *patterns, unsigned int *durations, unsigned int *frequencies, unsigned char *amplitudes);
 		//create a simple vibration
-		EXPORTED Tacton(char *pattern, unsigned int duration, unsigned int frequency, unsigned char amplitude);
-		EXPORTED Tacton(const char *pattern, unsigned int duration, unsigned int frequency, unsigned char amplitude);
-		EXPORTED Tacton(unsigned char pattern, unsigned int duration, unsigned int frequency, unsigned char amplitude);
-		EXPORTED Tacton(const Tacton &t);
-		EXPORTED ~Tacton();
+		Tacton(char *pattern, unsigned int duration, unsigned int frequency, unsigned char amplitude);
+		Tacton(const char *pattern, unsigned int duration, unsigned int frequency, unsigned char amplitude);
+		Tacton(unsigned char pattern, unsigned int duration, unsigned int frequency, unsigned char amplitude);
+		Tacton(const Tacton &t);
+		~Tacton();
 
 		//changes the pattern using raw format
-		EXPORTED void setPattern(char pattern);
-		EXPORTED void setPattern(unsigned int frame, char pattern);
+		void setPattern(char pattern);
+		void setPattern(unsigned int frame, char pattern);
 		//changes the pattern using string format
-		EXPORTED void setPattern(char *pattern);
-		EXPORTED void setPattern(const char *pattern);
-		EXPORTED void setPattern(unsigned int frame, char *pattern);
-		EXPORTED void setPattern(unsigned int frame, const char *pattern);
+		void setPattern(char *pattern);
+		void setPattern(const char *pattern);
+		void setPattern(unsigned int frame, char *pattern);
+		void setPattern(unsigned int frame, const char *pattern);
 		//changes the duration
-		EXPORTED void setDuration(unsigned int duration);
-		EXPORTED void setDuration(unsigned int frame, unsigned int duration);
+		void setDuration(unsigned int duration);
+		void setDuration(unsigned int frame, unsigned int duration);
 		//changes the frequency
-		EXPORTED void setFrequency(unsigned int frequency);
-		EXPORTED void setFrequency(unsigned int frame, unsigned int frequency);
+		void setFrequency(unsigned int frequency);
+		void setFrequency(unsigned int frame, unsigned int frequency);
 		//changes the amplitude
-		EXPORTED void setAmplitude(unsigned int amplitude);
-		EXPORTED void setAmplitude(unsigned int frame, unsigned int amplitude);
+		void setAmplitude(unsigned int amplitude);
+		void setAmplitude(unsigned int frame, unsigned int amplitude);
 
 		
 		//returns the number of frames
-		EXPORTED const unsigned int getNbFrames() const;
+		const unsigned int getNbFrames() const;
 
 		//returns the raw code (useful to send to the serial port)
-		EXPORTED void *rawCode() const;
+		void *rawCode() const;
 
 	private:
 		unsigned int _nbframes;
