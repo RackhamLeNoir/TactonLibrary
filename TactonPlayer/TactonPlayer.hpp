@@ -1,3 +1,6 @@
+#ifndef _TACTONPLAYER_
+#define _TACTONPLAYER_
+
 #include "Tacton.hpp"
 
 #ifdef __MACOSX__
@@ -54,3 +57,5 @@ class EXPORTED TactonPlayer
 private:
 		Serial *_comport;
 };
+
+#endif
