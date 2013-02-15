@@ -3,6 +3,11 @@
 #include <cstring>
 #include <cstdlib>
 
+Tacton::Tacton()
+:_nbframes(0), _patterns(NULL), _durations(NULL), _frequencies(NULL), _amplitudes(NULL)
+{
+}
+
 Tacton::Tacton(unsigned int nbframes, unsigned char *desc)
 :_nbframes(nbframes), _patterns(new unsigned char[nbframes]), _durations(new unsigned int[nbframes]), _frequencies(new unsigned int[nbframes]), _amplitudes(new unsigned char[nbframes])
 {
@@ -101,20 +106,74 @@ Tacton::Tacton(const char *pattern, unsigned int duration, unsigned int frequenc
 }
 
 Tacton::Tacton(const Tacton &t)
-:_nbframes(t._nbframes), _patterns(new unsigned char[t._nbframes]), _durations(new unsigned int[t._nbframes]), _frequencies(new unsigned int[t._nbframes]), _amplitudes(new unsigned char[t._nbframes])
+:_nbframes(t._nbframes)
 {
-	memcpy(_patterns, t._patterns, t._nbframes * sizeof(unsigned char));
-	memcpy(_durations, t._durations, t._nbframes * sizeof(unsigned int));
-	memcpy(_frequencies, t._frequencies, t._nbframes * sizeof(unsigned int));
-	memcpy(_amplitudes, t._amplitudes, t._nbframes * sizeof(unsigned char));
+	if (_nbframes > 0)
+	{
+		_patterns = new unsigned char[t._nbframes];
+		memcpy(_patterns, t._patterns, t._nbframes * sizeof(unsigned char));
+		_durations = new unsigned int[t._nbframes];
+		memcpy(_durations, t._durations, t._nbframes * sizeof(unsigned int));
+		_frequencies = new unsigned int[t._nbframes];
+		memcpy(_frequencies, t._frequencies, t._nbframes * sizeof(unsigned int));
+		_amplitudes = new unsigned char[t._nbframes];
+		memcpy(_amplitudes, t._amplitudes, t._nbframes * sizeof(unsigned char));
+	}
+	else
+	{
+		_patterns = NULL;
+		_durations = NULL;
+		_frequencies = NULL;
+		_amplitudes = NULL;
+	}
 }
 
 Tacton::~Tacton()
 {
-	delete []_patterns;
-	delete []_durations;
-	delete []_frequencies;
-	delete []_amplitudes;
+	if (_nbframes > 0)
+	{
+		delete []_patterns;
+		delete []_durations;
+		delete []_frequencies;
+		delete []_amplitudes;
+	}
+}
+
+Tacton &Tacton::operator = (const Tacton &t)
+{
+	if (&t == this)
+		return *this;
+
+	if (_nbframes > 0)
+	{
+		delete []_patterns;
+		delete []_durations;
+		delete []_frequencies;
+		delete []_amplitudes;
+	}
+
+	_nbframes = t.getNbFrames();
+
+	if (_nbframes > 0)
+	{
+		_patterns = new unsigned char[t._nbframes];
+		memcpy(_patterns, t._patterns, t._nbframes * sizeof(unsigned char));
+		_durations = new unsigned int[t._nbframes];
+		memcpy(_durations, t._durations, t._nbframes * sizeof(unsigned int));
+		_frequencies = new unsigned int[t._nbframes];
+		memcpy(_frequencies, t._frequencies, t._nbframes * sizeof(unsigned int));
+		_amplitudes = new unsigned char[t._nbframes];
+		memcpy(_amplitudes, t._amplitudes, t._nbframes * sizeof(unsigned char));
+	}
+	else
+	{
+		_patterns = NULL;
+		_durations = NULL;
+		_frequencies = NULL;
+		_amplitudes = NULL;
+	}
+
+	return *this;
 }
 
 const unsigned int Tacton::getNbFrames() const

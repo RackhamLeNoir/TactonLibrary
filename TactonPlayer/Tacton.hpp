@@ -24,6 +24,7 @@
 class EXPORTED Tacton 
 {
 	public:
+		Tacton();
 		//creates a tacton using the raw data format
 		//6 bytes per frame : 
 		//1 for the pattern
@@ -45,6 +46,9 @@ class EXPORTED Tacton
 		Tacton(unsigned char pattern, unsigned int duration, unsigned int frequency, unsigned char amplitude);
 		Tacton(const Tacton &t);
 		~Tacton();
+
+		//assignment overload
+		Tacton &operator = (const Tacton &t);
 
 		//changes the pattern using raw format
 		void setPattern(char pattern);
