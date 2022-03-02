@@ -130,3 +130,32 @@ void TactonManager::stop()
 {
 	_player->stop();
 }
+
+void TactonManager::setAngle(unsigned int angle)
+{
+	_player->setAngle(angle);
+}
+
+void TactonManager::setAngleSequence(unsigned int nbangles, unsigned int frameduration, unsigned int nbframes, byte *angles)
+{/*
+	Serial.print("Nb angles ");
+	Serial.println(nbangles);
+	Serial.print("Frame duration ");
+	Serial.println(frameduration);
+	Serial.print("Nb frames ");
+	Serial.println(nbframes);*/
+	
+	unsigned int a[nbangles];
+	for (int i = 0 ; i < nbangles ; i++)
+		a[i] = (angles[2 * i] << 8) |angles[2 * i + 1];
+	
+	for (int i = 0 ; i < nbframes ; i++)
+	{
+		setAngle(a[i % nbangles]);
+/*	Serial.print("Angle ");
+	Serial.println(a[i % nbangles]);*/
+		// /!\ don't forget to multiply if the timer was changed in TactonPlayer
+		delay(64 * frameduration);
+	}
+	_player->clear();
+}

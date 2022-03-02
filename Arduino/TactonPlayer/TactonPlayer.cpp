@@ -12,4 +12,11 @@ TactonPlayer::TactonPlayer(byte nbtactors, byte *pins)
 	}	
 }
 
+void TactonPlayer::clear()
+{
+	for (int i = 0 ; i < _nbtactors ; i++)
+		digitalWrite(_pins[i], LOW);
+}
+
+
 void __cxa_pure_virtual(void) {};

@@ -6,6 +6,11 @@
 //if using more than 8, change type of pattern
 #define MAXTACTORS 8
 
+#define TACTOR_RIGHT	0
+#define TACTOR_UP		1
+#define TACTOR_LEFT		2
+#define TACTOR_DOWN		3
+
 extern "C" void __cxa_pure_virtual(void); 
 
 class TactonPlayer 
@@ -19,10 +24,14 @@ class TactonPlayer
 		//set a different amplitude for each vibrator
 		virtual void setAmplitudes(byte nbtactors, byte amplitudes[]) = 0;
 //		virtual void setPattern(byte pattern) { _pattern = pattern; }
+		virtual void setAngle(unsigned int angle) = 0;
 
 
 		//Stop any vibration
 		virtual void stop() = 0;
+		
+		//Clear the pattern, the frequency remains
+		virtual void clear();
 
 		//8bits pattern => max 8 tactors, change type if using more
 		virtual void beep(byte pattern, unsigned long duration, unsigned int frequency, byte amplitude) = 0;

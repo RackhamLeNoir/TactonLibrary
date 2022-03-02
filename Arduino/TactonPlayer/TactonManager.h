@@ -26,6 +26,9 @@ class TactonManager
 		void setAmplitudes(unsigned int nbf, byte *desc);
 		void setFrequency(unsigned int freq);
 		void stop();
+		//angle in degrees made with 4 vibrators
+		void setAngle(unsigned int angle);
+		void setAngleSequence(unsigned int nbangles, unsigned int frameduration, unsigned int nbframes, byte *angles);
 
 
 		void clear();

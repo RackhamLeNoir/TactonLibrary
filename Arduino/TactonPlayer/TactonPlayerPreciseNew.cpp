@@ -21,8 +21,12 @@ void TactonPlayerPreciseNew::init() const
 	
 	//set prescalar for timer0 and timer2 to 1
 	// /!\ this affects delay!
+	TCCR0B |= (1 << CS00);
 	TCCR0B &= ~(1 << CS01);
+	TCCR0B &= ~(1 << CS02);
+	TCCR2B |= (1 << CS20);
 	TCCR2B &= ~(1 << CS21);
+	TCCR2B &= ~(1 << CS22);
 }
 
 void TactonPlayerPreciseNew::setFrequency(unsigned int frequency)
@@ -64,6 +68,34 @@ void TactonPlayerPreciseNew::setAmplitudes(byte nbtactors, byte *amplitudes)
 		analogWrite(_pins[i], amplitudes[i]);
 }
 
+void TactonPlayerPreciseNew::setAngle(unsigned int angle)
+{
+	//vertical
+	if (angle < 180)
+	{
+		analogWrite(_pins[TACTOR_UP], 255 * sin(angle * M_PI / 180.0));
+		analogWrite(_pins[TACTOR_DOWN], 0);
+	}
+	else
+	{
+		analogWrite(_pins[TACTOR_DOWN], - 255 * sin(angle * M_PI / 180.0));
+		analogWrite(_pins[TACTOR_UP], 0);
+	}
+
+	//horizontal
+	if (angle < 90 || angle > 270)
+	{
+		analogWrite(_pins[TACTOR_RIGHT], 255 * cos(angle * M_PI / 180.0));
+		analogWrite(_pins[TACTOR_LEFT], 0);
+	}
+	else
+	{
+		analogWrite(_pins[TACTOR_RIGHT], 0);
+		analogWrite(_pins[TACTOR_LEFT], - 255 * cos(angle * M_PI / 180.0));
+	}
+}
+
+
 //Stop any vibration
 void TactonPlayerPreciseNew::stop()
 {
@@ -72,10 +104,9 @@ void TactonPlayerPreciseNew::stop()
 	OCR1A = 0;
 	OCR1B = 0;
 	//clear the pattern
-	for (int i = 0 ; i < _nbtactors ; i++)
-		digitalWrite(_pins[i], LOW);
+	clear();	
 }
-
+	
 //Play a Tacton for a specified duration, frequency and amplitude
 void TactonPlayerPreciseNew::beep(byte pattern, unsigned long duration, unsigned int frequency, byte amplitude)
 {	

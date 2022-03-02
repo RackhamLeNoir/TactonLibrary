@@ -13,6 +13,8 @@ class TactonPlayerPreciseNew: public TactonPlayer
 		void setFrequency(unsigned int frequency);
 		//sets a different amplitude for each vibrator
 		void setAmplitudes(byte nbtactors, byte *amplitudes);
+		
+		void setAngle(unsigned int angle);
 
 		//Stop any vibration
 		void stop();
