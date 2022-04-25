@@ -2,7 +2,7 @@
 
 #include <cmath>
 
-MagicCircle::MagicCircle(QWidget *parent, Qt::WFlags flags)
+MagicCircle::MagicCircle(QWidget *parent, Qt::WindowFlags flags)
 	: QMainWindow(parent, flags), _timer(this), _angle(0), _clockwise(true)
 {
 	try

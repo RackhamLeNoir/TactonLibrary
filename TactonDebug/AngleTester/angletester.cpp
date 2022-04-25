@@ -2,7 +2,7 @@
 
 #include <cmath>
 
-AngleTester::AngleTester(QWidget *parent, Qt::WFlags flags)
+AngleTester::AngleTester(QWidget *parent, Qt::WindowFlags flags)
 	: QMainWindow(parent, flags)
 {
 	try

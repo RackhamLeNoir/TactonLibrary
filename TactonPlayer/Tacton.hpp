@@ -11,14 +11,14 @@
 #define POS2_LEFT 0x04
 #define POS2_DOWN 0x08
 
-#ifdef __MACOSX__
-#define EXPORTED
-#else
+#ifdef _WIN32
 	#ifdef _WINDLL
-	#define EXPORTED __declspec(dllexport)
+		#define EXPORTED __declspec(dllexport)
 	#else 
-	#define EXPORTED __declspec(dllimport)
+		#define EXPORTED __declspec(dllimport)
 	#endif
+#else
+	#define EXPORTED
 #endif
 
 class EXPORTED Tacton 

@@ -1,14 +1,27 @@
 #include "TactonPlayer.hpp"
 
-#include <ArduinoSerial\SerialWindows.hpp>
+#ifdef _WIN32
+	#include <SerialWindows.hpp>
+#elif defined(LINUX)
+	#include <SerialLinux.hpp>
+#else
+	#include <SerialMac.hpp>
+#endif
 
 #include <stdexcept>
+#include <cstring>
 
 TactonPlayer::TactonPlayer(const char *port)
 {
 	try
 	{
+#ifdef _WIN32
 		_comport = new SerialWindows(port);
+#elif defined(LINUX)
+		_comport = new SerialLinux(port);
+#else
+		_comport = new SerialMac(port);
+#endif
 	}
 	catch(...)
 	{
@@ -24,13 +37,13 @@ TactonPlayer::~TactonPlayer()
 void TactonPlayer::start()
 {
 	if (_comport)
-		_comport->WriteData("S", 1);
+		_comport->WriteData((void *)("S"), 1);
 }
 
 void TactonPlayer::stop()
 {
 	if (_comport)
-		_comport->WriteData("Q", 1);
+		_comport->WriteData((void *)("Q"), 1);
 }
 
 void TactonPlayer::regist(const Tacton &t)
@@ -185,7 +198,7 @@ void TactonPlayer::stopBuzz()
 	if (!_comport)
 		return;
 
-	_comport->WriteData("B", 1);
+	_comport->WriteData((void *)("B"), 1);
 }
 
 void TactonPlayer::debugRead(char *res, int nb) const

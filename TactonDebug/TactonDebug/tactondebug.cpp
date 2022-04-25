@@ -5,7 +5,7 @@ int TactonDebug::MaxFrequency = 400;
 int TactonDebug::MaxAmplitude = 255;
 int TactonDebug::MaxDuration = 2000;
 
-TactonDebug::TactonDebug(QWidget *parent, Qt::WFlags flags)
+TactonDebug::TactonDebug(QWidget *parent, Qt::WindowFlags flags)
 :QMainWindow(parent, flags)
 {
 	try

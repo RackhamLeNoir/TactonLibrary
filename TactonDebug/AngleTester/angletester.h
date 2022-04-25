@@ -1,17 +1,17 @@
 #ifndef ANGLETESTER_H
 #define ANGLETESTER_H
 
-#include <QtGui/QMainWindow>
+#include <QMainWindow>
 #include "ui_angletester.h"
 
-#include <TactonPlayer\TactonPlayer.hpp>
+#include <TactonPlayer.hpp>
 
 class AngleTester : public QMainWindow, Ui::AngleTesterClass
 {
 	Q_OBJECT
 
 	public:
-		AngleTester(QWidget *parent = 0, Qt::WFlags flags = 0);
+		AngleTester(QWidget *parent = 0, Qt::WindowFlags flags = Qt::Widget);
 		~AngleTester();
 
 	public slots:

@@ -181,28 +181,28 @@ const unsigned int Tacton::getNbFrames() const
 	return _nbframes;
 }
 
-__declspec(dllexport) void Tacton::setPattern(char pattern)
+void Tacton::setPattern(char pattern)
 {
 	setPattern(0, pattern);
 }
 
-__declspec(dllexport) void Tacton::setPattern(unsigned int frame, char pattern)
+void Tacton::setPattern(unsigned int frame, char pattern)
 {
 	if (frame < _nbframes)
 		_patterns[frame] = pattern;
 }
 
-__declspec(dllexport) void Tacton::setPattern(char *pattern)
+void Tacton::setPattern(char *pattern)
 {
 	setPattern(0, pattern);
 }
 
-__declspec(dllexport) void Tacton::setPattern(const char *pattern)
+void Tacton::setPattern(const char *pattern)
 {
 	setPattern(0, pattern);
 }
 
-__declspec(dllexport) void Tacton::setPattern(unsigned int frame, char *pattern)
+void Tacton::setPattern(unsigned int frame, char *pattern)
 {
 	if (frame < _nbframes)
 	{
@@ -214,7 +214,7 @@ __declspec(dllexport) void Tacton::setPattern(unsigned int frame, char *pattern)
 	}
 }
 
-__declspec(dllexport) void Tacton::setPattern(unsigned int frame, const char *pattern)
+void Tacton::setPattern(unsigned int frame, const char *pattern)
 {
 	if (frame < _nbframes)
 	{
@@ -226,34 +226,34 @@ __declspec(dllexport) void Tacton::setPattern(unsigned int frame, const char *pa
 	}
 }
 
-__declspec(dllexport) void Tacton::setDuration(unsigned int duration)
+void Tacton::setDuration(unsigned int duration)
 {
 	setDuration(0, duration);
 }
 
-__declspec(dllexport) void Tacton::setDuration(unsigned int frame, unsigned int duration)
+void Tacton::setDuration(unsigned int frame, unsigned int duration)
 {
 	if (frame < _nbframes)
 		_durations[frame] = duration;
 }
 
-__declspec(dllexport) void Tacton::setFrequency(unsigned int frequency)
+void Tacton::setFrequency(unsigned int frequency)
 {
 	setFrequency(0, frequency);
 }
 
-__declspec(dllexport) void Tacton::setFrequency(unsigned int frame, unsigned int frequency)
+void Tacton::setFrequency(unsigned int frame, unsigned int frequency)
 {
 	if (frame < _nbframes)
 		_frequencies[frame] = frequency;
 }
 
-__declspec(dllexport) void Tacton::setAmplitude(unsigned int amplitude)
+void Tacton::setAmplitude(unsigned int amplitude)
 {
 	setAmplitude(0, amplitude);
 }
 
-__declspec(dllexport) void Tacton::setAmplitude(unsigned int frame, unsigned int amplitude)
+void Tacton::setAmplitude(unsigned int frame, unsigned int amplitude)
 {
 	if (frame < _nbframes)
 		_amplitudes[frame] = amplitude;

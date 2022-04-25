@@ -1,17 +1,17 @@
 #ifndef TACTONDEBUG_H
 #define TACTONDEBUG_H
 
-#include <QtGui/QMainWindow>
+#include <QMainWindow>
 #include "ui_tactondebug.h"
 
-#include <TactonPlayer\TactonPlayer.hpp>
+#include <TactonPlayer.hpp>
 
 class TactonDebug : public QMainWindow, Ui::TactonDebugClass
 {
 	Q_OBJECT
 
 	public:
-		TactonDebug(QWidget *parent = 0, Qt::WFlags flags = 0);
+		TactonDebug(QWidget *parent = 0, Qt::WindowFlags flags = Qt::Widget);
 		~TactonDebug();
 
 	public slots:

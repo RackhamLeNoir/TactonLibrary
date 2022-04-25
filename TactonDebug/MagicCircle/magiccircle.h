@@ -1,19 +1,19 @@
 #ifndef MAGICCIRCLE_H
 #define MAGICCIRCLE_H
 
-#include <QtGui/QMainWindow>
+#include <QMainWindow>
 #include "ui_magiccircle.h"
 
 #include <QTimer>
 
-#include <TactonPlayer\TactonPlayer.hpp>
+#include <TactonPlayer.hpp>
 
 class MagicCircle : public QMainWindow, Ui::MagicCircleClass
 {
 	Q_OBJECT
 
 	public:
-		MagicCircle(QWidget *parent = 0, Qt::WFlags flags = 0);
+		MagicCircle(QWidget *parent = 0, Qt::WindowFlags flags = Qt::Widget);
 		~MagicCircle();
 
 	public slots:

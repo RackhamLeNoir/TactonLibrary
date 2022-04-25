@@ -1,7 +1,27 @@
 *.zip
+build
 
 # Created by https://www.toptal.com/developers/gitignore/api/c++,visualstudio,visualstudiocode,xcode,sublimetext,qt,qtcreator,macos,windows,linux
 # Edit at https://www.toptal.com/developers/gitignore?templates=c++,visualstudio,visualstudiocode,xcode,sublimetext,qt,qtcreator,macos,windows,linux
+
+### CMake ###
+CMakeLists.txt.user
+CMakeCache.txt
+CMakeFiles
+CMakeScripts
+Testing
+Makefile
+cmake_install.cmake
+install_manifest.txt
+compile_commands.json
+CTestTestfile.cmake
+CPack*.cmake
+_deps
+DartConfiguration.tcl
+
+### CMake Patch ###
+# External projects
+*-prefix/
 
 ### C++ ###
 # Prerequisites

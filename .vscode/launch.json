@@ -1,0 +1,52 @@
+{
+  // Utilisez IntelliSense pour en savoir plus sur les attributs possibles.
+  // Pointez pour afficher la description des attributs existants.
+  // Pour plus d'informations, visitez : https://go.microsoft.com/fwlink/?linkid=830387
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Angle tester",
+      "type": "cppdbg",
+      "request": "launch",
+      "program": "${workspaceFolder}/build/TactonDebug/AngleTester/AngleTester",
+      "args": [],
+      "environment": [],
+      "cwd": "${workspaceFolder}/TactonDebug/AngleTester/",
+      "externalConsole": false,
+      "logging": {
+        "moduleLoad": false,
+        "trace": true
+      },
+      "MIMode": "lldb",
+      "showDisplayString": true
+    },
+    {
+      "name": "Tacton Debug",
+      "type": "cppdbg",
+      "request": "launch",
+      "program": "${workspaceFolder}/build/TactonDebug/TactonDebug/TactonDebug",
+      "args": [],      "cwd": "${workspaceFolder}/TactonDebug/TactonDebug/",
+      "externalConsole": false,
+      "logging": {
+        "moduleLoad": false,
+        "trace": true
+      },
+      "MIMode": "lldb",
+      "showDisplayString": true
+    },
+    {
+      "name": "Magic circle",
+      "type": "cppdbg",
+      "request": "launch",
+      "program": "${workspaceFolder}/build/TactonDebug/MagicCircle/MagicCircle",
+      "environment": [],      "cwd": "${workspaceFolder}/TactonDebug/MagicCircle/",
+      "externalConsole": false,
+      "logging": {
+        "moduleLoad": false,
+        "trace": true
+      },
+      "MIMode": "lldb",
+      "showDisplayString": true
+    }
+  ]
+}

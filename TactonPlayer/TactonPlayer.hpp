@@ -3,16 +3,16 @@
 
 #include "Tacton.hpp"
 
-#ifdef __MACOSX__
 #include <Serial.hpp>
-#define EXPORTED
-#else
-#include <ArduinoSerial\Serial.hpp>
+
+#ifdef _WIN32
 	#ifdef _WINDLL
-	#define EXPORTED __declspec(dllexport)
-	#else
-	#define EXPORTED __declspec(dllimport)
+		#define EXPORTED __declspec(dllexport)
+	#else 
+		#define EXPORTED __declspec(dllimport)
 	#endif
+#else
+	#define EXPORTED
 #endif
 
 class EXPORTED TactonPlayer
