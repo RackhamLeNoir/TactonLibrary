@@ -1,3 +1,3 @@
 [submodule "TactonPlayer/ArduinoSerial"]
 	path = TactonPlayer/ArduinoSerial
-	url = https://github.com/RackhamLeNoir/arduinoserial
+	url = git@github.com:RackhamLeNoir/arduinoserial.git
