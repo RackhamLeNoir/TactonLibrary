@@ -17,7 +17,10 @@ boolean active = false;
 
 void setup()
 {
-  Serial.begin(57600);
+  //Speed is halved: due to timers modifications?
+  // => Connect with 57600 bauds
+  Serial.begin(115200, SERIAL_8N1);
+  Serial.write("Tactile wristband");
 //  player.init();
 /*  player.debug1();
   player.debug2();
@@ -207,7 +210,7 @@ void loop()
       break;
     //Ask for feedback
     case 'I':
-      Serial.write("I'm still alive");
+      Serial.write("Tactile wristband");
       command = 0;
       break;
     //unknown command: do nothing
@@ -220,4 +223,3 @@ void loop()
   if (active)
     manager.checkPlay();
 }
-

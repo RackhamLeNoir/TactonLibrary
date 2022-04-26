@@ -70,28 +70,31 @@ void TactonPlayerPreciseNew::setAmplitudes(byte nbtactors, byte *amplitudes)
 
 void TactonPlayerPreciseNew::setAngle(unsigned int angle)
 {
+	unsigned int x = cos(angle * M_PI / 180.0);
+	unsigned int y = sin(angle * M_PI / 180.0);
+	
 	//vertical
 	if (angle < 180)
 	{
-		analogWrite(_pins[TACTOR_UP], 255 * sin(angle * M_PI / 180.0));
+		analogWrite(_pins[TACTOR_UP], 255 * y * y);
 		analogWrite(_pins[TACTOR_DOWN], 0);
 	}
 	else
 	{
-		analogWrite(_pins[TACTOR_DOWN], - 255 * sin(angle * M_PI / 180.0));
+		analogWrite(_pins[TACTOR_DOWN], - 255 * y * y);
 		analogWrite(_pins[TACTOR_UP], 0);
 	}
 
 	//horizontal
 	if (angle < 90 || angle > 270)
 	{
-		analogWrite(_pins[TACTOR_RIGHT], 255 * cos(angle * M_PI / 180.0));
+		analogWrite(_pins[TACTOR_RIGHT], 255 * x * x);
 		analogWrite(_pins[TACTOR_LEFT], 0);
 	}
 	else
 	{
 		analogWrite(_pins[TACTOR_RIGHT], 0);
-		analogWrite(_pins[TACTOR_LEFT], - 255 * cos(angle * M_PI / 180.0));
+		analogWrite(_pins[TACTOR_LEFT], - 255 * x * x);
 	}
 }
 
