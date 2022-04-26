@@ -7,7 +7,8 @@ AngleTester::AngleTester(QWidget *parent, Qt::WindowFlags flags)
 {
 	try
 	{
-		_tactonPlayer = new TactonPlayer("COM4");
+		//_tactonPlayer = new TactonPlayer("COM4");
+		_tactonPlayer = new TactonPlayer("/dev/tty.usbserial-FTFRHUAO"); // Mac USB serial cable
 	}
 	catch(...)
 	{

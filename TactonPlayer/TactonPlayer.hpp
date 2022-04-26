@@ -1,5 +1,4 @@
-#ifndef _TACTONPLAYER_
-#define _TACTONPLAYER_
+#pragma once
 
 #include "Tacton.hpp"
 
@@ -57,5 +56,3 @@ class EXPORTED TactonPlayer
 private:
 		Serial *_comport;
 };
-
-#endif

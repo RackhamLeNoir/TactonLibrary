@@ -2,18 +2,28 @@
 
 #include <cmath>
 
+#include <iostream>
+using namespace std;
+
 MagicCircle::MagicCircle(QWidget *parent, Qt::WindowFlags flags)
 	: QMainWindow(parent, flags), _timer(this), _angle(0), _clockwise(true)
 {
 	try
 	{
-		_tactonPlayer = new TactonPlayer("COM8");
+//		_tactonPlayer = new TactonPlayer("COM8");
+		_tactonPlayer = new TactonPlayer("/dev/tty.usbserial-FTFRHUAO"); // Mac USB serial cable
 	}
-	catch(...)
+	catch (const char* message)
 	{
+		cerr << message << endl;
 		_tactonPlayer = NULL;
 	}
-
+	catch (...)
+	{
+		cerr << "Error" << endl;
+		_tactonPlayer = NULL;
+	}
+	
 	setupUi(this);
 
 	layout()->setSizeConstraint(QLayout::SetFixedSize);
@@ -27,7 +37,7 @@ MagicCircle::MagicCircle(QWidget *parent, Qt::WindowFlags flags)
 	connect(_play, SIGNAL(clicked(bool)), this, SLOT(play(bool)));
 	connect(_stop, SIGNAL(clicked(bool)), this, SLOT(stop(bool)));
 
-	connect(_direction, SIGNAL(currentIndexChanged (const QString &)), this, SLOT(setDirection(const QString &)));
+	connect(_direction, SIGNAL(currentTextChanged (const QString &)), this, SLOT(setDirection(const QString &)));
 	connect(_speed, SIGNAL(valueChanged(int)), this, SLOT(setSpeed(int)));
 	connect(_resolution, SIGNAL(valueChanged(int)), this, SLOT(setResolution(int)));
 	connect(_frequency, SIGNAL(valueChanged(int)), this, SLOT(setFrequency(int)));
@@ -93,25 +103,8 @@ void MagicCircle::setFrequency(int frequency)
 
 void MagicCircle::tactileFeedback(float angle)
 {
-	_tactonPlayer->playAngle(angle);// * M_PI / 180);
+	_tactonPlayer->playAngle(angle);
 	return;
-
-	unsigned char amplitudes[4];
-	memset(amplitudes, 0, 4);
-
-	//vertical
-	if (angle < 180)
-		amplitudes[1] = 255 * sin(angle * M_PI / 180);
-	else
-		amplitudes[3] = - 255 * sin(angle * M_PI / 180);
-
-	//horizontal
-	if (angle < 90 ||angle > 270)
-		amplitudes[0] = 255 * cos(angle * M_PI / 180);
-	else
-		amplitudes[2] = - 255 * cos(angle * M_PI / 180);
-
-	_tactonPlayer->setAmplitudes(4, amplitudes);
 }
 
 void MagicCircle::visualFeedback(float)

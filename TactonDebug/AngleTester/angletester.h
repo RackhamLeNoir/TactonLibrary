@@ -1,5 +1,4 @@
-#ifndef ANGLETESTER_H
-#define ANGLETESTER_H
+#pragma once
 
 #include <QMainWindow>
 #include "ui_angletester.h"
@@ -23,5 +22,3 @@ class AngleTester : public QMainWindow, Ui::AngleTesterClass
 	private:
 		TactonPlayer *_tactonPlayer;
 };
-
-#endif // ANGLETESTER_H

@@ -1,5 +1,4 @@
-#ifndef _TACTON_
-#define _TACTON_
+#pragma once
 
 #define POS1_UP_FORWARD 0x01
 #define POS1_UP_BACKWARD 0x02
@@ -82,5 +81,3 @@ class EXPORTED Tacton
 		unsigned int *_frequencies;
 		unsigned char *_amplitudes;
 };
-
-#endif

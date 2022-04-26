@@ -1,5 +1,4 @@
-#ifndef MAGICCIRCLE_H
-#define MAGICCIRCLE_H
+#pragma once
 
 #include <QMainWindow>
 #include "ui_magiccircle.h"
@@ -39,5 +38,3 @@ class MagicCircle : public QMainWindow, Ui::MagicCircleClass
 		TactonPlayer *_tactonPlayer;
 		QTimer _timer;
 };
-
-#endif // MAGICCIRCLE_H

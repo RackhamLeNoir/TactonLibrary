@@ -1,5 +1,4 @@
-#ifndef TACTONDEBUG_H
-#define TACTONDEBUG_H
+#pragma once
 
 #include <QMainWindow>
 #include "ui_tactondebug.h"
@@ -31,5 +30,3 @@ class TactonDebug : public QMainWindow, Ui::TactonDebugClass
 
 		TactonPlayer *_tactonPlayer;
 };
-
-#endif // TACTONDEBUG_H

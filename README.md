@@ -1,7 +1,8 @@
 # TactonLibrary
+
 Arduino library + host PC library + GUI for debugging
 
-# Compiling
+## Compiling
 
 On VSCode, please use the C/C++ Extension pack. Compiling uses CMake, tested on Mac so far.
 
