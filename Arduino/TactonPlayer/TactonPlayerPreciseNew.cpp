@@ -70,34 +70,37 @@ void TactonPlayerPreciseNew::setAmplitudes(byte nbtactors, byte *amplitudes)
 
 void TactonPlayerPreciseNew::setAngle(unsigned int angle)
 {
-	unsigned int x = cos(angle * M_PI / 180.0);
-	unsigned int y = sin(angle * M_PI / 180.0);
-	
+	byte amplitudes[4];
+	while (angle >= 360)
+		angle -= 360;
+	float x = cos(angle * M_PI / 180.0);
+	float y = sin(angle * M_PI / 180.0);
+
 	//vertical
 	if (angle < 180)
 	{
-		analogWrite(_pins[TACTOR_UP], 255 * y * y);
-		analogWrite(_pins[TACTOR_DOWN], 0);
+		amplitudes[TACTOR_UP] = 255 * y;
+		amplitudes[TACTOR_DOWN] =  0;
 	}
 	else
 	{
-		analogWrite(_pins[TACTOR_DOWN], - 255 * y * y);
-		analogWrite(_pins[TACTOR_UP], 0);
+		amplitudes[TACTOR_DOWN] = - 255 * y;
+		amplitudes[TACTOR_UP] =  0;
 	}
 
 	//horizontal
 	if (angle < 90 || angle > 270)
 	{
-		analogWrite(_pins[TACTOR_RIGHT], 255 * x * x);
-		analogWrite(_pins[TACTOR_LEFT], 0);
+		amplitudes[TACTOR_RIGHT] = 255 * x;
+		amplitudes[TACTOR_LEFT] =  0;
 	}
 	else
 	{
-		analogWrite(_pins[TACTOR_RIGHT], 0);
-		analogWrite(_pins[TACTOR_LEFT], - 255 * x * x);
+		amplitudes[TACTOR_LEFT] = - 255 * x;
+		amplitudes[TACTOR_RIGHT] =  0;
 	}
+	setAmplitudes(4, amplitudes);
 }
-
 
 //Stop any vibration
 void TactonPlayerPreciseNew::stop()

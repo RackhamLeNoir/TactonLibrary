@@ -40,28 +40,13 @@ void AngleTester::setFrequency(int frequency)
 
 void AngleTester::setAngle(int angle)
 {
-	unsigned char amplitudes[4];
-	memset(amplitudes, 0, 4);
-
-//	angle = 90;
-
-	//vertical
-	if (angle < 180)
-		amplitudes[1] = 255 * sin(angle * M_PI / 180.0);
-	else
-		amplitudes[3] = - 255 * sin(angle * M_PI / 180.0);
-
-	//horizontal
-	if (angle < 90 ||angle > 270)
-		amplitudes[0] = 255 * cos(angle * M_PI / 180.0);
-	else
-		amplitudes[2] = - 255 * cos(angle * M_PI / 180.0);
-
-	_tactonPlayer->setAmplitudes(4, amplitudes);
+	_tactonPlayer->playAngle(angle);
+	return;
 }
 
 void AngleTester::play(bool)
 {
+	setFrequency(_frequency->value());
 	setAngle(_angle->value());
 }
 
