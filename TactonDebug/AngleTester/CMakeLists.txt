@@ -8,6 +8,6 @@ endif()
 
 find_package(Qt6 REQUIRED COMPONENTS Widgets)
 
-add_executable(AngleTester main.cpp angletester.cpp)
+add_executable(AngleTester main.cpp AngleTester.cpp DMTactileDisplay.cpp)
 
 target_link_libraries(AngleTester PRIVATE TactonPlayer Qt6::Core Qt6::Gui Qt6::Widgets)
