@@ -130,6 +130,7 @@ Makefile*
 *build-*
 *.qm
 *.prl
+.qt_for_python
 
 # Qt unit tests
 target_wrapper.*
